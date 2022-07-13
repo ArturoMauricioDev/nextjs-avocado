@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import Navbar from "../components/Navbar/Navbar";
 
 const Home = () => {
@@ -16,7 +17,12 @@ const Home = () => {
       <Navbar />
       <p>Home</p>
       {productList.map((product) => (
-        <div>{product.name}</div>
+        <Link href={`/product/${product.id}`} key={product.id}>
+          <a>
+            <div>{product.name}</div>
+            <img src={product.image} />
+          </a>
+        </Link>
       ))}
     </div>
   );
