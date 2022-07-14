@@ -1,14 +1,20 @@
 import React from "react";
-import { AppProps } from "next/app";
-import Navbar from "components/Navbar/Navbar";
+import Navbar from "@components/Navbar/Navbar";
 
 const Layout: React.FC = ({ children }) => {
   return (
-    <>
+    <div>
       <Navbar />
       {children}
-      <footer>This is the footer</footer>
-    </>
+      <footer className="container">This is the footer</footer>
+      <style jsx>
+        {`
+          .container {
+            background: salmon;
+          }
+        `}
+      </style>
+    </div>
   );
 };
 

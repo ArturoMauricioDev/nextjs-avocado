@@ -14,7 +14,6 @@ const Home = () => {
 
   return (
     <div>
-      <Navbar />
       <p>Home</p>
       {productList.map((product) => (
         <Link href={`/product/${product.id}`} key={product.id}>
