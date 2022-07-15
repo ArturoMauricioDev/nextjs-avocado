@@ -2,5 +2,10 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/api/avo": "pages/api/avo.js"
+  "/about": "pages/about.html",
+  "/api/avo/[id]": "pages/api/avo/[id].js",
+  "/api/avo": "pages/api/avo.js",
+  "/": "pages/index.html",
+  "/product/[id]": "pages/product/[id].html",
+  "/404": "pages/404.html"
 }

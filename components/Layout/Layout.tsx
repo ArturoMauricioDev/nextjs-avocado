@@ -1,7 +1,11 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import Navbar from "@components/Navbar/Navbar";
 
-const Layout: React.FC = ({ children }) => {
+type LayoutProps = {
+  children?: React.ReactNode;
+};
+
+const Layout = ({ children }: LayoutProps) => {
   return (
     <div>
       <Navbar />
