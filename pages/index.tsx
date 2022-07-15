@@ -1,15 +1,26 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
-const Home = () => {
-  const [productList, setProductList] = useState<TProduct[]>([]);
+export const getStaticProps = async () => {
+  const response = await fetch("https://nextjs-avocado.vercel.app/api/avo");
+  const { data }: TAPIAvoResponse = await response.json();
 
-  useEffect(() => {
-    window
-      .fetch("/api/avo")
-      .then((response) => response.json())
-      .then(({ data, length }) => setProductList(data));
-  }, []);
+  return {
+    props: {
+      productList: data,
+    },
+  };
+};
+
+const Home = ({ productList }: { productList: TProduct[] }) => {
+  // const [productList, setProductList] = useState<TProduct[]>([]);
+
+  // useEffect(() => {//client
+  //   window
+  //     .fetch("/api/avo")
+  //     .then((response) => response.json())
+  //     .then(({ data, length }) => setProductList(data));
+  // }, []);
 
   return (
     <div>
