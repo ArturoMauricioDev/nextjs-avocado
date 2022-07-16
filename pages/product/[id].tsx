@@ -1,20 +1,34 @@
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import React from "react";
+import { GetStaticProps } from "next";
 
-const ProductItem = () => {
-  const [product, setProduct] = useState<TProduct>();
-  const {
-    query: { id },
-  } = useRouter();
+export const getStaticPaths = async () => {
+  const response = await fetch("https://nextjs-avocado.vercel.app/api/avo");
+  const { data: productList }: TAPIAvoResponse = await response.json();
 
-  useEffect(() => {
-    window
-      .fetch(`/api/avo/${id}`)
-      .then((res) => res.json())
-      .then((product) => setProduct(product))
-      .catch((err) => console.error(err.message));
-  }, []);
+  const paths = productList.map(({ id }) => ({
+    params: { id },
+  }));
+  return {
+    paths,
+    fallback: false, //incremental static generation, 404 for everything else.
+  };
+};
 
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const id = params?.id as string;
+  const response = await fetch(
+    `https://nextjs-avocado.vercel.app/api/avo/${id}`
+  );
+  const product: TProduct = await response.json();
+
+  return {
+    props: {
+      product,
+    },
+  };
+};
+
+const ProductItem = ({ product }: { product: TProduct }) => {
   return <div>ProductItemId es: {product?.name} </div>;
 };
 
