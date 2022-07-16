@@ -1,6 +1,12 @@
 import { AppProps } from "next/app";
 import Layout from "components/Layout/Layout";
 
+export function reportWebVitals(metric) {
+  //console.log(metric);
+  //analytics - calibre
+  //serverAnalytics.log(metric)
+}
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Layout>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export const getStaticProps = async () => {
   const response = await fetch("https://nextjs-avocado.vercel.app/api/avo");
@@ -29,7 +30,7 @@ const Home = ({ productList }: { productList: TProduct[] }) => {
         <Link href={`/product/${product.id}`} key={product.id}>
           <a>
             <div>{product.name}</div>
-            <img src={product.image} />
+            <Image src={product.image} width={333} height={333} />
           </a>
         </Link>
       ))}
